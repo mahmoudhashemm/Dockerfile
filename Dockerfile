@@ -89,6 +89,10 @@ RUN curl -o odoo.deb -sSL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/od
 RUN pip3 install --upgrade pip \
     && pip3 install wheel psycopg2-binary \
     && pip3 install -r https://raw.githubusercontent.com/odoo/odoo/refs/heads/saas-17.4/requirements.txt
+    && apt update \
+    && apt install nano -y \
+    && echo "alias ll='ls -l'" >> ~/.bashrc \
+    && source ~/.bashrc
 
 # Copy entrypoint script and Odoo configuration file
 COPY ./entrypoint.sh /
